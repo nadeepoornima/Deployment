@@ -1,0 +1,45 @@
+environments:
+- name: dev
+  configs:
+    endpoints:
+        production:
+            url: 'https://dev.wso2.com'
+    security:
+        production:
+            enabled: true
+            type: basic
+            username: admin
+            password: admin
+    certs:
+        - hostName: 'https://dev.wso2.com'
+          alias: Dev
+          path: dev.crt
+    deploymentEnvironments:
+        - displayOnDevportal: true
+          deploymentEnvironment: Label1
+          deploymentVhost : localhost
+        - displayOnDevportal: true
+          deploymentEnvironment: Label2
+          deploymentVhost : us.wso2.com
+    policies:
+        - Gold
+        - Silver
+    additionalProperties:
+        - name: property1
+          value: http://property.name1
+          display: true
+        - name: property2
+          value: http://property.name2
+          display: false
+- name: production
+  configs:
+    endpoints:
+        production:
+            url: 'https://prod.wso2.com'
+    mutualSslCerts:
+        - tierName: Unlimited
+          alias: Prod1
+          path: prod1.crt
+        - tierName: Gold
+          alias: Prod2
+          path: prod2.crt
